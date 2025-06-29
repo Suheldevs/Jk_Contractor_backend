@@ -11,10 +11,8 @@ const corsOptions = {
         "http://localhost:3000",
         "http://localhost:5173",
         "http://localhost:5174",
-        "https://adv-ashok-kumar.netlify.app",
-        "https://adv-ashok-kumar.netlify.app/",
-        "https://adv-ashok-kumar-admin.netlify.app",
-        "https://adv-ashok-kumar-admin.netlify.app/",
+        'https://jkcontractor.netlify.app',
+        "https://jkcontractor-admin.netlify.app"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
