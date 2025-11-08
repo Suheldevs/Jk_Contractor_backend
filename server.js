@@ -6,24 +6,33 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 const app = express()
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://jkcontractor.netlify.app",
+  "https://jkcontractor-admin.netlify.app",
+  "https://jkcontractor.co.in",
+  "https://www.jkcontractor.co.in",
+  "https://admin.jkcontractor.co.in",
+];
+
 const corsOptions = {
-    origin: [
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        'https://jkcontractor.netlify.app',
-        "https://jkcontractor-admin.netlify.app",
-        "https://admin.jkcontractor.co.in",
-        "https://jkcontractor.co.in",
-        "jkcontractor.co.in",
-        "admin.jkcontractor.co.in",
-        "www.jkcontractor.co.in",
-    ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200 || 201,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH" ,"DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 200,
 };
+
+app.use(cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 
