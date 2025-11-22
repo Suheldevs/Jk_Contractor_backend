@@ -3,7 +3,7 @@ import Blog from "../model/blog.model.js";
 //   Create a new blog
 export const createBlog = async (req, res) => {
     try {
-        const { title, description, category, postedBy, imageUrl } = req.body;
+        const { title, description, category, postedBy="Admin", imageUrl } = req.body;
          
         if (!title || !description || !postedBy || !category || !imageUrl) {
             return res.status(400).json({ message: "All fields are required." });
@@ -49,7 +49,7 @@ export const getBlogById = async (req, res) => {
 //   Update a blog
 export const updateBlog = async (req, res) => {
     try {
-        const { title, category, description, postedBy, imageUrl } = req.body;
+        const { title, category, description, postedBy = "admin", imageUrl } = req.body;
 
         if (!title || !description || !category  || !postedBy || !imageUrl) {
             return res.status(400).json({ message: "All fields are required." });

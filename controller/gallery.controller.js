@@ -3,13 +3,13 @@ import Gallery from "../model/gallery.model.js";
 //    Create a new gallery entry
 export const createGallery = async (req, res) => {
     try {
-        const { postedBy, imageUrl } = req.body;
+        const { postedBy = "Admin", imageUrl } = req.body;
 
         if (!imageUrl) {
             return res.status(400).json({ message: "All fields are required." });
         }
 
-        const newGallery = new Gallery({ postedBy:null, imageUrl });
+        const newGallery = new Gallery({ postedBy, imageUrl });
         await newGallery.save();
 
         res.status(201).json({ message: "Gallery item added successfully!", gallery: newGallery });
@@ -44,7 +44,7 @@ export const getGalleryById = async (req, res) => {
 //    Update a gallery item
 export const updateGallery = async (req, res) => {
     try {
-        const { postedBy, imageUrl } = req.body;
+        const { postedBy= "admin", imageUrl } = req.body;
 
         if (!imageUrl) {
             return res.status(400).json({ message: "All fields are required." });
@@ -52,7 +52,7 @@ export const updateGallery = async (req, res) => {
 
         const updatedGallery = await Gallery.findByIdAndUpdate(
             req.params.id,
-            { postedBy:null, imageUrl },
+            { postedBy, imageUrl },
             { new: true }
         );
 
