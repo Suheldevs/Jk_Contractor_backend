@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const gallerySchema = new mongoose.Schema(
     {
-        postedBy: { type: String, required: true,default:'Admin' },
+        postedBy: { type: String, default:'Admin' },
         imageUrl: { type: String, required: true,unique:true },
     },
     { timestamps: true } 
