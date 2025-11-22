@@ -5,11 +5,11 @@ export const createGallery = async (req, res) => {
     try {
         const { postedBy, imageUrl } = req.body;
 
-        if (!postedBy || !imageUrl) {
+        if (!imageUrl) {
             return res.status(400).json({ message: "All fields are required." });
         }
 
-        const newGallery = new Gallery({ postedBy, imageUrl });
+        const newGallery = new Gallery({ postedBy:null, imageUrl });
         await newGallery.save();
 
         res.status(201).json({ message: "Gallery item added successfully!", gallery: newGallery });
@@ -46,13 +46,13 @@ export const updateGallery = async (req, res) => {
     try {
         const { postedBy, imageUrl } = req.body;
 
-        if (!postedBy || !imageUrl) {
+        if (!imageUrl) {
             return res.status(400).json({ message: "All fields are required." });
         }
 
         const updatedGallery = await Gallery.findByIdAndUpdate(
             req.params.id,
-            { postedBy, imageUrl },
+            { postedBy:null, imageUrl },
             { new: true }
         );
 

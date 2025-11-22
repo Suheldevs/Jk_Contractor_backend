@@ -6,7 +6,7 @@ const blogSchema = new mongoose.Schema(
         slug: { type: String, required: true },
         category: { type: String, required: true },
         description: { type: String, required: true },
-        postedBy: { type: String, required: true,default:'Admin' },
+        postedBy: { type: String, default:'Admin' },
         imageUrl:{type:String,required:true},
     },
     { timestamps: true } 
